@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="400" height="120" viewBox="0 0 400 120" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <defs>
+    <linearGradient id="g" x1="0" x2="1">
+      <stop offset="0" stop-color="#0ea5a4"/>
+      <stop offset="1" stop-color="#ff7a59"/>
+    </linearGradient>
+    <style>
+      .zzq-text{font-family: 'Playfair Display', serif; font-weight:700; font-size:48px; fill:url(#g);}
+      .zzq-sub{font-family: 'Inter', sans-serif; font-size:14px; fill:#334155}
+    </style>
+  </defs>
+  <rect width="400" height="120" rx="16" fill="transparent" />
+  <g transform="translate(20,20)">
+    <circle cx="40" cy="40" r="36" fill="url(#g)" opacity="0.95" />
+    <text x="40" y="52" text-anchor="middle" fill="#fff" font-family="Inter, sans-serif" font-weight="700" font-size="28">Z</text>
+  </g>
+  <g transform="translate(100,44)">
+    <text class="zzq-text">ZZQ</text>
+    <text class="zzq-sub" x="0" y="30">Premium Phone Protection</text>
+  </g>
+</svg>

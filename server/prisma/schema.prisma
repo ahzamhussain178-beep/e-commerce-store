@@ -1,0 +1,69 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           Int      @id @default(autoincrement())
+  email        String?  @unique
+  phone        String?  @unique
+  passwordHash String?
+  role         String   @default("user")
+  createdAt    DateTime @default(now())
+}
+
+model OTP {
+  id        Int      @id @default(autoincrement())
+  phone     String
+  code      String
+  createdAt DateTime @default(now())
+  expiresAt DateTime
+}
+
+model Product {
+  id          Int      @id @default(autoincrement())
+  title       String
+  description String?
+  price       Float
+  images      String   @default("[]")
+  published   Boolean  @default(true)
+  stock       Int      @default(0)
+  sku         String?  @unique
+  category    String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  orderItems  OrderItem[]
+}
+
+model Order {
+  id            Int         @id @default(autoincrement())
+  orderNumber   String      @unique
+  userId        Int?
+  customerName  String
+  customerEmail String?
+  customerPhone String?
+  shippingAddress Json
+  billingAddress  Json?
+  totalAmount    Float
+  status        String      @default("pending") // pending, processing, shipped, delivered, cancelled
+  paymentStatus String      @default("pending") // pending, paid, failed, refunded
+  paymentMethod String?
+  paymentId     String?
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+  orderItems    OrderItem[]
+}
+
+model OrderItem {
+  id        Int     @id @default(autoincrement())
+  orderId   Int
+  productId Int
+  quantity  Int
+  price     Float   // price at time of order
+  order     Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  product   Product @relation(fields: [productId], references: [id])
+}
